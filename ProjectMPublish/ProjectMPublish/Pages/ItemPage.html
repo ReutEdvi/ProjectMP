@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <style>
         .fakeimg {
             height: 200px;
@@ -107,6 +108,9 @@
             border: 1px solid black;
             padding: 15px;
         }
+        div.card-body {
+            direction: rtl;
+        }
     </style>
     <script src="/Scripts/ajaxjs.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
@@ -117,8 +121,6 @@
             console.log("ready!");
             $("#getShow").click(showRend);
             $("#getShow").click(showVideo);
-            $(document).on("click", "#editBTN", sendText);
-            /*$(".btn btn-primary").click(sendText);*/
 
 
         });
@@ -144,27 +146,24 @@
                 str += "<div id='" + i + "'class='card'><div class='card-header'>";
                 str += "<a class='card-link' data-toggle='collapse' href='#collapseOne'>"
                     + Data[i].ShowTitle + "</a >";
-                str += "<a href='#' id='editBTN' class='btn btn-primary'>" + "עריכה " + "</a>";
+                str += "<a href='#' id='"+i+"' class='btn btn-primary' onclick='sendText(this)'>" + "עריכה " + "</a>";
                 str += "<div id='collapseOne'  id='" + i + "' class='collapse show' data-parent='#accordion'>";
-                /*str += "<div class='card-body'>" + Data[i].ShowId + "</div>";*/
-
-                str += "<div class='card-body'><p>" + Data[i].ShowId + "</p>";
-                str += "<p>" + Data[i].StoryName + "</p>";
-                str += "<p>" + Data[i].StoryFormat + "</p>";
-                str += "<p>" + Data[i].StoryScript + "</p>";
-                str += "<p>" + Data[i].StoryId + "</p>";
+                str += "<div class='card-body'><p>מספר תוכנית: " + Data[i].ShowId + "</p>";
+                str += "<p> שם: " + Data[i].StoryName + "</p>";
+                str += "<p> פורמט: " + Data[i].StoryFormat + "</p>";
+                str += "<p class='scriptC'>" + Data[i].StoryScript + "</p>";
+                str += "<p class='scriptId'>" + Data[i].StoryId + "</p>";
                 str += "</div></div>";
                 str += "</div></div>";
                 str += "</div>";
-                /*str += "<button  id='" + i + "'class='addFav'>Add to Favorites</button></div>";*/
             }
             $("#showItems").append(str);
 
         }
         function showVideo() {
             console.log("in videi");
-            let api1 = 'http://10.120.17.160:8701/VelaEncompassService/API/GetPlayback?callsign=26cf1d0b-0e71-420b-ae78-b023e62d0a41&start_datetime=2021-03-15T07:15&end_datetime=2021-03-16T08:21:00';
-            ajaxCall("GET", api1, '', getVideouccess, getVideoError);
+            let api1 = "http://10.120.17.160:8701/VelaEncompassService/API/GetPlayback?callsign=26cf1d0b-0e71-420b-ae78-b023e62d0a41&start_datetime=2021-03-15T07:15&end_datetime=2021-03-16T08:21:00";
+            ajaxCall("GET", api1, "", getVideouccess, getVideoError);
 
         }
         function getVideouccess(data) {
@@ -174,12 +173,35 @@
             console.log(err);
             console.log("failed");
         }
-        function sendText() {
+        function sendText(cntrl) {
             console.log("in send");
-            let bt = $(this).attr('id');
-            /*inputy= $("title-input").val(this.ShowTitle);*/
-            console.log(bt);
+            var by = cntrl.id;
+            
+            var bt = $("p.scriptC");
+            var sid = $("p.scriptId");
+            $("#desc-input").text(bt[by].innerHTML);
+            $("#title-input").val(sid[by].innerHTML);
+
         }
+        //save the item details and show in item save page
+        //function saveItem() {
+        //    console.log("in save item");
+
+        //    savedItem = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+
+        //        StotyText: $("#desc-input").val(),
+        //        StoryNum: $("#title-input").val()
+                
+
+        //    }
+        //    ajaxCall("POST", "../api/SavedItem", JSON.stringify(savedItem), postSaveSuccess, postSaveError);
+        //}
+        //function postSaveSuccess(data) {
+        //    console.log(data);
+        //}
+        //function postSaveError(err) {
+        //    console.log(err);
+        //}
 
 
 
@@ -194,7 +216,7 @@
         <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>-->
-
+        <!--<button onclick="Btn"></button>-->
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="#">יצירת אייטם</a>
@@ -268,6 +290,7 @@
                     <img src="https://img.icons8.com/officel/50/000000/youtube.png" />
                     <button id="getBTN">Get</button>
                     <button id="postBTN">Post</button>
+                    <button id="saveItem" onclick="saveItem()">Save Item</button>
 
                 </form>
             </div>
@@ -277,9 +300,9 @@
             <p>Footer</p>-->
     </div>
     
-    <div class="jumbotron" style="margin-bottom:0" dir="rtl">
+    <!--<div class="jumbotron" style="margin-bottom:0" dir="rtl">
         <a href="https://www.kan.org.il/"><img src="../Images/logo_kan.png" alt="logo_bottom" height="100" width="200" /></a>
-    </div>
-        
+    </div>-->
+     <div id="pphh"></div>   
 </body>
 </html>

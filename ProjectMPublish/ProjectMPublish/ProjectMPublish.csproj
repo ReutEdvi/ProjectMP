@@ -157,15 +157,17 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\SavedItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DAL\DBServices.cs" />
     <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\XMLServiceItem.cs" />
+    <Compile Include="Models\SavedItem.cs" />
+    <Compile Include="Models\XMLServiceItemTest.cs" />
     <Compile Include="Models\XMLServiceItemSSE.cs" />
-    <Compile Include="Models\XMLServiceItemSSEE.cs" />
+    <Compile Include="Models\XMLServiceItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

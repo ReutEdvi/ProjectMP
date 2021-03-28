@@ -47,7 +47,7 @@ namespace ProjectMPublish.Models
         //}
         public List<Item> ReadItem()
         {
-            XMLServiceItemSSEE xmls = new XMLServiceItemSSEE();
+            XMLServiceItem xmls = new XMLServiceItem();
             return xmls.Check();
         }
         //public List<string> ReadItemShow()
