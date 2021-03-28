@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebProj.Models;
+using ProjectMPublish.Models;
 
-namespace WebProj.Controllers
+namespace ProjectMPublish.Controllers
 {
     public class CustomerController : ApiController
     {

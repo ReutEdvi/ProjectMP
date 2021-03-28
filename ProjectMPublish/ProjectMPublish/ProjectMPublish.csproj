@@ -156,15 +156,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DAL\DBServices.cs" />
-    <Compile Include="Models\DAL\XMLServiceShow.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\XMLServiceItem.cs" />
     <Compile Include="Models\XMLServiceItemSSE.cs" />
@@ -180,6 +177,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\logo_ogImageKan.jpg" />
+    <Content Include="Images\TV.gif" />
+    <Content Include="Images\youtube-promotion.jpg" />
     <Content Include="Pages\businesses.html" />
     <Content Include="Pages\createItem.html" />
     <Content Include="Pages\ItemPage.html" />

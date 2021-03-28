@@ -1,10 +1,11 @@
-﻿using WebProj.Controllers;
+﻿using ProjectMPublish.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebProj.Models
+
+namespace ProjectMPublish.Models
 {
     public class Item
     {

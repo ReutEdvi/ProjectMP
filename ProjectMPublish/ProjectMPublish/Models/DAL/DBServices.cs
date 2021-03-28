@@ -10,9 +10,9 @@ using System.IO;
 
 using System.Windows;
 using System.Configuration;
-using WebProj.Models;
+using ProjectMPublish.Models;
 
-namespace WebProj.Models.DAL
+namespace ProjectMPublish.Models.DAL
 //namespace ResturantApp.Controllers
 {
     public class DBServices

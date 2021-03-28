@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WebProj.Models.DAL;
+using ProjectMPublish.Models.DAL;
 
-namespace WebProj.Models
+namespace ProjectMPublish.Models
 {
     public class Customer
     {
