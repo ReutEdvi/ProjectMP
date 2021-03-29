@@ -7,13 +7,14 @@ using System.Web;
 using System.Web.Configuration;
 using System.Text;
 using System.IO;
-
+using System.Net;
+using System.Net.Http;
+using System.Web.Http.Filters;
 using System.Windows;
 using System.Configuration;
 using ProjectMPublish.Models;
 
 namespace ProjectMPublish.Models.DAL
-//namespace ResturantApp.Controllers
 {
     public class DBServices
     {
@@ -90,60 +91,60 @@ namespace ProjectMPublish.Models.DAL
         }
 
         //insert save item
-        //public int SaveItemDetails(SavedItem savedItem)
-        //{
+        public int SaveItemDetails(SavedItem savedItem)
+        {
 
-        //    SqlConnection con;
-        //    SqlCommand cmd;
+            SqlConnection con;
+            SqlCommand cmd;
 
-        //    try
-        //    {
-        //        con = connect("DBConnectionString"); // create the connection
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
 
-        //    String cStr = BuildInsertCustomerCommand(savedItem);      // helper method to build the insert string
+            String cStr = BuildInsertSavedItemCommand(savedItem);      // helper method to build the insert string
 
-        //    cmd = CreateCommand(cStr, con);             // create the command
+            cmd = CreateCommand(cStr, con);             // create the command
 
-        //    try
-        //    {
-        //        int numEffected = cmd.ExecuteNonQuery(); // execute the command
-        //        return numEffected;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // write to log
-        //        throw (ex);
-        //    }
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw new Exception("faild" + ex.Message);
+            }
 
-        //    finally
-        //    {
-        //        if (con != null)
-        //        {
-        //            // close the db connection
-        //            con.Close();
-        //        }
-        //    }
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
 
-        //}
+        }
 
-        //private String BuildInsertCustomerCommand(SavedItem savedItem)
-        //{
-        //    String command;
+        private String BuildInsertSavedItemCommand(SavedItem savedItem)
+        {
+            String command;
 
-        //    StringBuilder sb = new StringBuilder();
-        //    // use a string builder to create the dynamic string
-        //    sb.AppendFormat("Values('{0}', '{1}')", savedItem.StoryNum, savedItem.StotyText);
-        //    String prefix = "INSERT INTO Customers_2021 " + "(fname, lname, email, phoneN, password) ";
-        //    command = prefix + sb.ToString();
+            StringBuilder sb = new StringBuilder();
+            // use a string builder to create the dynamic string
+            sb.AppendFormat("Values('{0}', '{1}')", savedItem.StoryNum, savedItem.StoryText);
+            String prefix = "INSERT INTO SaveItem_2021 " + "(storyNum, storyText)";
+            command = prefix + sb.ToString();
 
-        //    return command;
-        //}
+            return command;
+        }
 
 
     }

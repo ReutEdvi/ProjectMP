@@ -4,7 +4,7 @@
         url: api,
         data: data,
         cache: false,
-        contentType: "application/json; charset=utf-8",
+        contentType: "application/json",
         dataType: "json",
         success: successCB,
         error: errorCB

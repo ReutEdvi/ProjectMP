@@ -1,0 +1,1 @@
+﻿select * from SavedItems_2021

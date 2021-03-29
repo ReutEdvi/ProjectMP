@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
+using System.IO;
 
 namespace ProjectMPublish.Controllers
 {
@@ -17,16 +20,20 @@ namespace ProjectMPublish.Controllers
         //}
 
         //// GET api/<controller>/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        public string Get(int id)
+        {
+            return "value";
+        }
 
         // POST api/<controller>
-        //public void Post([FromBody] SavedItem sv)
-        //{
-        //    sv.InsertSave();
-        //}
+        //[Route("api/SavedItem")]
+        //[Route("")]
+        [HttpPost]
+        [Route("api/SavedItem")]
+        public void Post([FromBody] SavedItem sv)
+        {
+             sv.InsertSave();
+        }
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody] string value)

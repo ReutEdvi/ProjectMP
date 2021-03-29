@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>Show Room</title>
     <meta charset="utf-8">
@@ -10,8 +10,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <style>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+    <!--<script src="C:\Users\reute\Desktop\Repos\ProjectMP\ProjectMPublish\ProjectMPublish\Scripts\jquery-3.4.1.js"></script>-->
+    <script src="../Scripts/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
         .fakeimg {
             height: 200px;
         }
@@ -108,19 +111,24 @@
             border: 1px solid black;
             padding: 15px;
         }
+
         div.card-body {
             direction: rtl;
         }
     </style>
-    <script src="/Scripts/ajaxjs.js"></script>
+    <!--<script src="/Scripts/ajaxjs.js"></script>-->
+
+
     <script src="../Scripts/ajaxCalls.js"></script>
-    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
     <script>
 
         $(document).ready(function () {
             console.log("ready!");
             $("#getShow").click(showRend);
             $("#getShow").click(showVideo);
+            $("#saveItem").click(saveItemD);
+
+
 
 
         });
@@ -146,7 +154,7 @@
                 str += "<div id='" + i + "'class='card'><div class='card-header'>";
                 str += "<a class='card-link' data-toggle='collapse' href='#collapseOne'>"
                     + Data[i].ShowTitle + "</a >";
-                str += "<a href='#' id='"+i+"' class='btn btn-primary' onclick='sendText(this)'>" + "עריכה " + "</a>";
+                str += "<a href='#' id='" + i + "' class='btn btn-primary' onclick='sendText(this)'>" + "עריכה " + "</a>";
                 str += "<div id='collapseOne'  id='" + i + "' class='collapse show' data-parent='#accordion'>";
                 str += "<div class='card-body'><p>מספר תוכנית: " + Data[i].ShowId + "</p>";
                 str += "<p> שם: " + Data[i].StoryName + "</p>";
@@ -176,32 +184,41 @@
         function sendText(cntrl) {
             console.log("in send");
             var by = cntrl.id;
-            
+
             var bt = $("p.scriptC");
             var sid = $("p.scriptId");
             $("#desc-input").text(bt[by].innerHTML);
             $("#title-input").val(sid[by].innerHTML);
 
+
         }
         //save the item details and show in item save page
-        //function saveItem() {
-        //    console.log("in save item");
+        function saveItemD() {
+            console.log("in save item");
+            let _StoryNum = $("#title-input").val();
+            let _StoryText = $("#desc-input").val();
 
-        //    savedItem = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
+            let savedItem = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
 
-        //        StotyText: $("#desc-input").val(),
-        //        StoryNum: $("#title-input").val()
-                
+                StoryNum: _StoryNum,
+                StoryText: _StoryText
 
-        //    }
-        //    ajaxCall("POST", "../api/SavedItem", JSON.stringify(savedItem), postSaveSuccess, postSaveError);
-        //}
-        //function postSaveSuccess(data) {
-        //    console.log(data);
-        //}
-        //function postSaveError(err) {
-        //    console.log(err);
-        //}
+            }
+            ajaxCall("POST", "../api/SavedItem", JSON.stringify(savedItem), postSaveSuccess, postSaveError);
+        }
+        function postSaveSuccess(data) {
+            alert("inserted, item = " + data);
+            console.log(data);
+            //setTimeout(function () {
+            //    document.location = "businesses.html";
+            //}, 3000);
+            /*console.log(data);*/
+            /*swal("Added Successfuly!", "Great Job", "success");*/
+        }
+        function postSaveError(err) {
+            alert(err.responseJSON.ExceptionMessage);
+            console.log(err.responseJSON);
+        }
 
 
 
@@ -290,19 +307,15 @@
                     <img src="https://img.icons8.com/officel/50/000000/youtube.png" />
                     <button id="getBTN">Get</button>
                     <button id="postBTN">Post</button>
-                    <button id="saveItem" onclick="saveItem()">Save Item</button>
+                    <button id="saveItem">Save Item</button>
 
                 </form>
             </div>
         </div>
 
-        <!--<div class="jumbotron text-center" style="margin-bottom:0">
-            <p>Footer</p>-->
     </div>
     
-    <!--<div class="jumbotron" style="margin-bottom:0" dir="rtl">
-        <a href="https://www.kan.org.il/"><img src="../Images/logo_kan.png" alt="logo_bottom" height="100" width="200" /></a>
-    </div>-->
+
      <div id="pphh"></div>   
 </body>
 </html>
