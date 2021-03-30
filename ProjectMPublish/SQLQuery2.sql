@@ -1,11 +1,13 @@
 ﻿CREATE TABLE [SaveItem_2021] (
-        [storyId] smallint IDENTITY (1, 1) NOT NULL ,
+        [id] smallint IDENTITY (1, 1) NOT NULL ,
+        [title] nvarchar (50) ,
         [storyNum] INT NOT NULL ,
-        [storyText] nvarchar (900) ,
+        [description] nvarchar (900) ,
         
    
-	Primary key (storyId)
+	Primary key (Id)
 )
 
 select * from SaveItem_2021
+select * from Videos
 drop TABLE SaveItem_2021

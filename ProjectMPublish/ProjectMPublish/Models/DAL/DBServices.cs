@@ -139,8 +139,8 @@ namespace ProjectMPublish.Models.DAL
 
             StringBuilder sb = new StringBuilder();
             // use a string builder to create the dynamic string
-            sb.AppendFormat("Values('{0}', '{1}')", savedItem.StoryNum, savedItem.StoryText);
-            String prefix = "INSERT INTO SaveItem_2021 " + "(storyNum, storyText)";
+            sb.AppendFormat("Values('{0}', '{1}', '{2}')", savedItem.Title ,savedItem.StoryNum, savedItem.Description);
+            String prefix = "INSERT INTO SaveItem_2021 " + "(title, storyNum, description)";
             command = prefix + sb.ToString();
 
             return command;

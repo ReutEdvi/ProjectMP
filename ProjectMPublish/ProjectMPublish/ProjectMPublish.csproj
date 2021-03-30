@@ -163,7 +163,9 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DAL\DBServices.cs" />
+    <Compile Include="Models\DAL\DBServicesS.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\RowEdit.cs" />
     <Compile Include="Models\SavedItem.cs" />
     <Compile Include="Models\XMLServiceItemTest.cs" />
     <Compile Include="Models\XMLServiceItemSSE.cs" />
@@ -188,6 +190,8 @@
     <Content Include="Pages\ItemPage.html" />
     <Content Include="Pages\login.html" />
     <Content Include="Pages\Main.html" />
+    <Content Include="Pages\SavedItems.html" />
+    <Content Include="Pages\style.css" />
     <Content Include="Scripts\ajaxCalls.js" />
     <Content Include="Scripts\ajaxjs.js" />
     <Content Include="Scripts\bootstrap.js" />

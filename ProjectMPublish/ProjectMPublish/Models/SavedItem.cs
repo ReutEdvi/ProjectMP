@@ -5,25 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace ProjectMPublish.Models
 {
     public class SavedItem
     {
-        int storyId;
+        int id;
+        string title;
         int storyNum;
-        string storyText;
+        string description;
         public SavedItem() { }
 
-        public SavedItem(int storyId, int storyNum, string storyText)
+        public SavedItem(int id, string title, int storyNum, string description)
         {
-            StoryId = storyId;
+            Id = id;
+            Title = title;
             StoryNum = storyNum;
-            StoryText = storyText;
+            Description = description;
         }
 
-        public int StoryId { get => storyId; set => storyId = value; }
+        public int Id { get => id; set => id = value; }
+        public string Title { get => title; set => title = value; }
         public int StoryNum { get => storyNum; set => storyNum = value; }
-        public string StoryText { get => storyText; set => storyText = value; }
+        public string Description { get => description; set => description = value; }
 
         public void InsertSave()
         {

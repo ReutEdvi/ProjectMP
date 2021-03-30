@@ -118,7 +118,7 @@
     </style>
     <!--<script src="/Scripts/ajaxjs.js"></script>-->
 
-
+    <link href="style.css" rel="stylesheet" />
     <script src="../Scripts/ajaxCalls.js"></script>
     <script>
 
@@ -127,9 +127,6 @@
             $("#getShow").click(showRend);
             $("#getShow").click(showVideo);
             $("#saveItem").click(saveItemD);
-
-
-
 
         });
         function showRend() {
@@ -157,7 +154,7 @@
                 str += "<a href='#' id='" + i + "' class='btn btn-primary' onclick='sendText(this)'>" + "עריכה " + "</a>";
                 str += "<div id='collapseOne'  id='" + i + "' class='collapse show' data-parent='#accordion'>";
                 str += "<div class='card-body'><p>מספר תוכנית: " + Data[i].ShowId + "</p>";
-                str += "<p> שם: " + Data[i].StoryName + "</p>";
+                str += "<p class='scriptName'>" + Data[i].StoryName + "</p>";
                 str += "<p> פורמט: " + Data[i].StoryFormat + "</p>";
                 str += "<p class='scriptC'>" + Data[i].StoryScript + "</p>";
                 str += "<p class='scriptId'>" + Data[i].StoryId + "</p>";
@@ -184,24 +181,29 @@
         function sendText(cntrl) {
             console.log("in send");
             var by = cntrl.id;
-
-            var bt = $("p.scriptC");
+            
+            var tit = $("p.scriptName");
             var sid = $("p.scriptId");
-            $("#desc-input").text(bt[by].innerHTML);
-            $("#title-input").val(sid[by].innerHTML);
-
+            var desc = $("p.scriptC");
+            
+            $("#title-input").val(tit[by].innerHTML);
+            $("#id-input").val(sid[by].innerHTML);
+            $("#desc-input").val(desc[by].innerHTML);
+            
+            
 
         }
         //save the item details and show in item save page
         function saveItemD() {
             console.log("in save item");
-            let _StoryNum = $("#title-input").val();
-            let _StoryText = $("#desc-input").val();
-
+            let _title = $("#title-input").val();
+            let _storyNum = $("#id-input").val();
+            let _description = $("#desc-input").val();
             let savedItem = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
 
-                StoryNum: _StoryNum,
-                StoryText: _StoryText
+                Title: _title,
+                StoryNum: _storyNum,
+                Description: _description
 
             }
             ajaxCall("POST", "../api/SavedItem", JSON.stringify(savedItem), postSaveSuccess, postSaveError);
@@ -218,6 +220,77 @@
         function postSaveError(err) {
             alert(err.responseJSON.ExceptionMessage);
             console.log(err.responseJSON);
+        }
+        function sendPost(msg) {
+            let pageId = "104598111726735";
+            console.log("trying to get page id from facebook API");
+            let user_token = sessionStorage.getItem("token");
+            let userID = sessionStorage.getItem("userID");
+
+            //try to get page access token
+            let url_get_page_access = "https://graph.facebook.com/" + pageId + "?fields=access_token&access_token=" + user_token;
+
+            let page_acces_token = httpGet(url_get_page_access);
+            var resp = JSON.parse(page_acces_token);
+            let postUrl = "https://graph.facebook.com/" + pageId + "/feed?message=" + document.getElementById('desc-input').value + "&access_token=" + resp.access_token;
+
+            let res = httpPost(postUrl);
+
+            console.log(res);
+
+        }
+        function httpGet(url) {
+            var xml = new XMLHttpRequest();
+            xml.open('GET', url, false);
+            xml.send(null);
+            alert(xml.responseText);
+            return xml.responseText;
+        }
+        function httpPost(url) {
+            var xml = new XMLHttpRequest();
+            xml.open('POST', url, false);
+            xml.send();
+            return xml.responseText;
+        }
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '304468051299771',
+                cookie: true,
+                xfbml: true,
+                version: 'v10.0'
+            });
+
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function statusChangeCallback(response) {
+            if (response.status == "connected") {
+                console.log("connected")
+                sessionStorage.setItem("token", response.authResponse.accessToken);
+                sessionStorage.setItem("userID", response.authResponse.userID);
+            }
+            else {
+                console.log("not-connected")
+                sessionStorage.clear();
+            }
+
+            console.log(response);
+        }
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
         }
 
 
@@ -293,10 +366,12 @@
         </div>
         <div class="row">
             <div class="col" id="content-editor">
-                <form class="content-form">
+                <div class="content-form">
                     <div>
                         <label for="title-input">שם תכנית</label>
-                        <input id="title-input" type="text" name="title-input" value="" />
+                        <input id="title-input" type="text" name="title-input" value="" /><br>
+                        <label for="id-input">מספר תכנית</label>
+                        <input id="id-input" type="text" name="id-input" value="" />
                     </div>
                     <div>
                         <label for="desc-input">תאור</label>
@@ -305,11 +380,15 @@
                     <img src="https://img.icons8.com/fluent/50/000000/twitter.png" />
                     <img src="https://img.icons8.com/fluent/50/000000/facebook-new.png" />
                     <img src="https://img.icons8.com/officel/50/000000/youtube.png" />
-                    <button id="getBTN">Get</button>
-                    <button id="postBTN">Post</button>
-                    <button id="saveItem">Save Item</button>
+                    <fb:login-button scope="public_profile,email"
+                                     onlogin="checkLoginState();">
+                    </fb:login-button>
+                    
 
-                </form>
+                    <button id="saveItem">Save Item</button>
+                    <button onclick="sendPost('TBD')" id="testBtn">Test Post</button>
+
+                </div>
             </div>
         </div>
 
