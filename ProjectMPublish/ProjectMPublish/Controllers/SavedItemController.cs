@@ -9,28 +9,30 @@ using System.Web.Hosting;
 using System.Web.Http;
 using System.IO;
 using System.Data;
+using ProjectMPublish.Models.DAL;
 
 namespace ProjectMPublish.Controllers
 {
     public class SavedItemController : ApiController
     {
+        // GET api/<controller>
         public DataTable Get()
         {
             DBServicesS ds = new DBServicesS();
-            string query = "SELECT * FROM SavedItems_2021";
+            string query = "SELECT * FROM SaveItem_2021";
             return ds.Select(query);
         }
         // PUT api/<controller>/5
         public void Put(int id, [FromBody] RowEdit value)
         {
-            string q = "UPDATE SavedItems_2021 SET description='" + value.description + "', Title='" + value.title + "' WHERE id=" + id;
+            string q = "UPDATE SaveItem_2021 SET description='" + value.description + "', title='" + value.title + "' WHERE id=" + id;
             DBServicesS ds = new DBServicesS();
             ds.Update(q);
         }
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
-            string q = "DELETE FROM SavedItems_2021 WHERE Id=" + id;
+            string q = "DELETE FROM SaveItem_2021 WHERE Id=" + id;
             DBServicesS ds = new DBServicesS();
             ds.Update(q);
         }
@@ -41,10 +43,10 @@ namespace ProjectMPublish.Controllers
         //}
 
         //// GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/<controller>
         //[Route("api/SavedItem")]

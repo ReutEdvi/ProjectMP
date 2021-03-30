@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="../Scripts/ajaxCalls.js"></script>
+
     <style>
         body {
             color: #404E67;
@@ -115,16 +115,12 @@
                 display: none;
             }
     </style>
+    <script src="../Scripts/ajaxCalls.js"></script>
     <script>
         $(document).ready(function () {
-            console.log("hhhh");
             $('[data-toggle="tooltip"]').tooltip();
             var actions = $("table td:last-child").html();
-
-
-            ajaxCall("GET", "../api/SavedItem", "", getContent, errorCB);
-
-
+            ajaxCall('GET', '../api/SavedItem', '', getContent, errorCB);
             // Append table with add row form on add new button click
             //  $(".add-new").click(function(){
             //$(this).attr("disabled", "disabled");
@@ -218,16 +214,16 @@
             console.log(content);
             var htmlString = '';
             for (let i = 0; i < content.length; i++) {
-                      htmlString+= `<tr>
-                            <td style="pointer-events:none">${content[i].id}</td>
-                            <td>${content[i].title}</td>
-                            <td>${content[i].description}</td>
-                            <td>
-                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                            </td>
-                        </tr>`
+                htmlString += `<tr>
+                                <td style="pointer-events:none">${content[i].id}</td>
+                                <td>${content[i].title}</td>
+                                <td>${content[i].description}</td>
+                                <td>
+                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                </td>
+                            </tr>`
             }
 
 
@@ -238,12 +234,12 @@
             alert(err);
         }
 
-
+       
 
         var row_to_delete;
         function deleteRow() {
             var id = row_to_delete.children(":first").text();
-            ajaxCall('DELETE', '../api/SavedItem/' + id, '', deleteSuccess, errorCB)
+            ajaxCall('DELETE', '../api/savedItem/' + id, '', deleteSuccess, errorCB)
             row_to_delete.remove();
             $('.modal').hide();
         }
@@ -283,9 +279,9 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-8"><h2><b>Saved Items</b></h2></div>
-                        <!--<div class="col-sm-4">
+                        <div class="col-sm-4">
                             <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -300,7 +296,7 @@
 
 
                     <tbody id="table-body">
-                        <!--<tr>
+                        <tr>
                             <td>1234</td>
                             <td>Administration</td>
                             <td>DescriptionDescription</td>
@@ -329,11 +325,11 @@
                                 <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                                 <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                             </td>
-                        </tr>-->
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </body>
-</html>
+</html>-->

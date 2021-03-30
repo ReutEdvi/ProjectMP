@@ -190,6 +190,7 @@
     <Content Include="Pages\ItemPage.html" />
     <Content Include="Pages\login.html" />
     <Content Include="Pages\Main.html" />
+    <Content Include="Pages\Sa.html" />
     <Content Include="Pages\SavedItems.html" />
     <Content Include="Pages\style.css" />
     <Content Include="Scripts\ajaxCalls.js" />
