@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.Data;
 using System.Text;
-using Myproject.Models;
+using ProjectMPublish.Models;
 
 /// <summary>
 /// DBServices is a class created by me to provides some DataBase Services
