@@ -117,12 +117,14 @@
     </style>
     <script>
         $(document).ready(function () {
-            console.log("hhhh");
+            
+            
             $('[data-toggle="tooltip"]').tooltip();
             var actions = $("table td:last-child").html();
+            sendData();
 
 
-            ajaxCall("GET", "../api/SavedItem", "", getContent, errorCB);
+            /*ajaxCall("GET", "../api/SavedItem", "", getContent, errorCB);*/
 
 
             // Append table with add row form on add new button click
@@ -213,6 +215,10 @@
                 $('.modal').show();
             });
         });
+        function sendData() {
+            console.log("in rend");
+            ajaxCall('GET', '../api/SavedItem', '', getContent, errorCB)
+        }
 
         function getContent(content) {
             console.log(content);

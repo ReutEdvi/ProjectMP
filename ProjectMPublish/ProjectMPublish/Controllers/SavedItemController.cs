@@ -22,6 +22,11 @@ namespace ProjectMPublish.Controllers
             string query = "SELECT * FROM SaveItem_2021";
             return ds.Select(query);
         }
+        //// GET api/<controller>/5
+        public string Get(int id)
+        {
+            return "value";
+        }
         // PUT api/<controller>/5
         public void Put(int id, [FromBody] RowEdit value)
         {
@@ -42,17 +47,13 @@ namespace ProjectMPublish.Controllers
         //    return new string[] { "value1", "value2" };
         //}
 
-        //// GET api/<controller>/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+       
 
         // POST api/<controller>
         //[Route("api/SavedItem")]
         //[Route("")]
-        [HttpPost]
-        [Route("api/SavedItem")]
+        //[HttpPost]
+        //[Route("api/SavedItem")]
         public void Post([FromBody] SavedItem sv)
         {
              sv.InsertSave();
