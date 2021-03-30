@@ -48,11 +48,6 @@ namespace ProjectMPublish.Models
             DBServices dbs = new DBServices();
             dbs.InsertCustomer(this);
         }
-        //public void SaveHighlightCustomer(string email, List<Highlights> highlights)
-        //{
-        //    DBServices dbs = new DBServices(); 
-        //    dbs.InsertCustomerHighlight(email, highlights);
 
-        //}
     }
 }

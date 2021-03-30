@@ -21,14 +21,9 @@ namespace ProjectMPublish.Controllers
         public void Post([FromBody] Customer cr)
         {
             cr.InsertC();
-            //return businesses;
+            
         }
-        //public void Post(string email, List<Highlights> highlights)
-        //{
-        //    Customer c = new Customer();
-        //    c.SaveHighlightCustomer(email, highlights);
-        //    //return businesses;
-        //}
+
 
 
 
