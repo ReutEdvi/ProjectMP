@@ -135,12 +135,9 @@
                 e.preventDefault();
                 checkValue();
             });
-            //$("#nonRegister").click(function () {
-            //    localStorage.clear();
-            //});
-            //$("#regPage").click(function () {
-            //    localStorage.clear();
-            //});
+            $("#regPage").click(function () {
+                localStorage.clear();
+            });
             
             //$('.message a').click(function () {
             //    $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
@@ -160,7 +157,7 @@
             console.log(Data.Email);
             if (Data.Email != null && Data.Password != null) {
                 document.location ="businesses.html";
-                //swal("Added Successfuly!", "Great Job", "success");
+                /*swal("Added Successfuly!", "Great Job", "success");*/
                  userObject = { 'email': Data.Email, 'password': Data.Password };
                 localStorage.setItem('userObject', JSON.stringify(userObject));
                 console.log(userObject);
@@ -191,9 +188,9 @@
                 <input type="text" placeholder="email" id="emailTB" />
                 <input type="password" placeholder="password" id="passwordTB" />
                 <button id="loginBTN">login</button>
-                <!--<p class="message">Not registered? <a href="#" id="regPage" onclick="document.location='registration.html'">Create an account</a></p>-->
+                <p class="message">Not registered? <a href="#" id="regPage" onclick="document.location='registration.html'">Create an account</a></p>
             </form><br />
-            <!--<button id="nonRegister" onclick="document.location='businesses.html'">Continue without registration</button>-->
+            
         </div>
     </div>
     <div id="showCustom">

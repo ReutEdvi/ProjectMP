@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ProjectMPublish.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ProjectMPublish.Models;
 
 namespace ProjectMPublish.Controllers
 {
@@ -17,21 +17,20 @@ namespace ProjectMPublish.Controllers
             return c.Read(email, password);
 
         }
-        //public IEnumerable<string> Get()
+        // POST api/<controller>
+        public void Post([FromBody] Customer cr)
+        {
+            cr.InsertC();
+            //return businesses;
+        }
+        //public void Post(string email, List<Highlights> highlights)
         //{
-        //    return new string[] { "value1", "value2" };
+        //    Customer c = new Customer();
+        //    c.SaveHighlightCustomer(email, highlights);
+        //    //return businesses;
         //}
 
-        //// GET api/<controller>/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
 
-        //// POST api/<controller>
-        //public void Post([FromBody] string value)
-        //{
-        //}
 
         //// PUT api/<controller>/5
         //public void Put(int id, [FromBody] string value)

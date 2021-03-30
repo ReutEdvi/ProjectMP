@@ -146,6 +146,60 @@ namespace ProjectMPublish.Models.DAL
             return command;
         }
 
+        public int InsertCustomer(Customer customer)
+        {
+
+            SqlConnection con;
+            SqlCommand cmd;
+
+            try
+            {
+                con = connect("DBConnectionString"); // create the connection
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            String cStr = BuildInsertCustomerCommand(customer);      // helper method to build the insert string
+
+            cmd = CreateCommand(cStr, con);             // create the command
+
+            try
+            {
+                int numEffected = cmd.ExecuteNonQuery(); // execute the command
+                return numEffected;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+
+            finally
+            {
+                if (con != null)
+                {
+                    // close the db connection
+                    con.Close();
+                }
+            }
+
+        }
+        private String BuildInsertCustomerCommand(Customer customer)
+        {
+            String command;
+
+            StringBuilder sb = new StringBuilder();
+            // use a string builder to create the dynamic string
+            sb.AppendFormat("Values('{0}', '{1}', '{2}', '{3}', '{4}')", customer.Fname, customer.Lname, customer.Email, customer.PhoneN, customer.Password);
+            String prefix = "INSERT INTO Customers_2021 " + "(fname, lname, email, phoneN, password) ";
+            command = prefix + sb.ToString();
+
+            return command;
+        }
+
 
     }
 

@@ -155,20 +155,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CustController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\SavedItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cust.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DAL\DBServices.cs" />
     <Compile Include="Models\DAL\DBServicesS.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\RowEdit.cs" />
     <Compile Include="Models\SavedItem.cs" />
-    <Compile Include="Models\XMLServiceItemTest.cs" />
-    <Compile Include="Models\XMLServiceItemSSE.cs" />
     <Compile Include="Models\XMLServiceItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -190,10 +190,11 @@
     <Content Include="Pages\ItemPage.html" />
     <Content Include="Pages\login.html" />
     <Content Include="Pages\Main.html" />
-    <Content Include="Pages\Sa.html" />
+    <Content Include="Pages\registration.html" />
     <Content Include="Pages\SavedItems.html" />
     <Content Include="Pages\style.css" />
     <Content Include="Scripts\ajaxCalls.js" />
+    <Content Include="Scripts\ajaxCallsWithKey.js" />
     <Content Include="Scripts\ajaxjs.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
