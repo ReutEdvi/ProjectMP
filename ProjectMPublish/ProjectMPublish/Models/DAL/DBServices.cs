@@ -77,7 +77,7 @@ namespace ProjectMPublish.Models.DAL
 
                 //String selectSTR = "SELECT * FROM Customers_2021 Where email=" + email + " and password=" + password;
                 //String selectSTR = "SELECT * FROM Customers_2021 Where email= "+"'"+ email +"'"+"+ and password ="+"'"+ password+"'";
-                String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email + "'" + " and password = " + "'" + password + "'";
+                String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email + "'" + " and password = " + "'" + password + "'" + " and access <> 'NULL' ";
 
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
                 // get a reader
@@ -87,6 +87,7 @@ namespace ProjectMPublish.Models.DAL
                     //Customer c = new Customer();
                     c.Email = (string)dr["email"];
                     c.Password = (string)dr["password"];
+                    c.Access = (string)dr["access"];
                     //cusList.Add(c);
                 }
 

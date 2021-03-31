@@ -78,3 +78,5 @@ INSERT INTO [CustomersM_2021]
            
 	   )
        select * from CustomersM_2021
+       SELECT * FROM Customers_2021 where email = 'edvireut@gmail.com' and password = 'Rere123456' and access <> 'NULL'
+       SELECT * FROM Customers_2021 where email = 'edvireut@gmail.com' and password = 'Rere123456' and access <> 'NULL' 
