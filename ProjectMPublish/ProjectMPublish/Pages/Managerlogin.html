@@ -2,13 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Manager login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -149,14 +150,14 @@
             console.log("In check!");
             valemail = $("#emailTB").val();
             valpassword = $("#passwordTB").val();
-            let api = "../api/Customer?email=" + valemail + "&password=" + valpassword;
+            let api = "../api/Manager?email=" + valemail + "&password=" + valpassword;
             ajaxCall("GET", api, "", getCheckSuccess, getCheckError);
         }
         function getCheckSuccess(data) {   
             Data = data;
             console.log(Data.Email);
-            if (Data.Email != null && Data.Password != null && Data.Access !=null) {
-                document.location ="businesses.html";
+            if (Data.Email != null && Data.Password != null) {
+                document.location ="managerAcces.html";
                 /*swal("Added Successfuly!", "Great Job", "success");*/
                  userObject = { 'email': Data.Email, 'password': Data.Password };
                 localStorage.setItem('userObject', JSON.stringify(userObject));
@@ -176,6 +177,7 @@
 </head>
 <body>
     <div class="login-page">
+        <h1>Manager Acces</h1>
         <div class="form">
             <form class="register-form">
                 <input type="text" placeholder="name" />
@@ -188,9 +190,9 @@
                 <input type="text" placeholder="email" id="emailTB" />
                 <input type="password" placeholder="password" id="passwordTB" />
                 <button id="loginBTN">login</button>
-                <p class="message">Not registered? <a href="#" id="regPage" onclick="document.location='registration.html'">Create an account</a></p>
+                
             </form><br />
-                   <!--<button id="nonRegister" onclick="document.location='Managerlogin.html'">Manager access</button>-->
+                   
         </div>
     </div>
     <div id="showCustom">

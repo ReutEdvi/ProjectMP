@@ -21,6 +21,49 @@ namespace ProjectMPublish.Models.DAL
         public SqlDataAdapter da;
         public DataTable dt;
 
+        public Manager ReadManager(string email, string password)
+        {
+
+            SqlConnection con = null;
+            Manager m = new Manager();
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+
+                //String selectSTR = "SELECT * FROM Customers_2021 Where email=" + email + " and password=" + password;
+                //String selectSTR = "SELECT * FROM Customers_2021 Where email= "+"'"+ email +"'"+"+ and password ="+"'"+ password+"'";
+                String selectSTR = "SELECT * FROM Managers_2021 where email = " + "'" + email + "'" + " and password = " + "'" + password + "'";
+
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+                while (dr.Read())
+                {   // Read till the end of the data into a row                   
+                    //Customer c = new Customer();
+                    m.Email = (string)dr["email"];
+                    m.Password = (string)dr["password"];
+                    //cusList.Add(c);
+                }
+
+                return m;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+
+            }
+
+        }
         public Customer ReadCustomer(string email, string password)
         {
 

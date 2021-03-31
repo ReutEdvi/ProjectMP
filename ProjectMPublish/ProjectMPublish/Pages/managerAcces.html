@@ -13,6 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../Scripts/ajaxCalls.js"></script>
     <style>
         body {
@@ -22,7 +23,7 @@
         }
 
         .table-wrapper {
-            width: 700px;
+            /*width: 700px;*/
             margin: 30px auto;
             background: #fff;
             padding: 20px;
@@ -69,7 +70,7 @@
             }
 
             table.table th:last-child {
-                width: 100px;
+                width: 150px;
             }
 
             table.table td a {
@@ -129,24 +130,6 @@
             var actions = $("table td:last-child").html();
             sendData();
 
-
-            /*ajaxCall("GET", "../api/SavedItem", "", getContent, errorCB);*/
-
-
-            // Append table with add row form on add new button click
-            //  $(".add-new").click(function(){
-            //$(this).attr("disabled", "disabled");
-            //var index = $("table tbody tr:last-child").index();
-            //      var row = '<tr>' +
-            //          '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-            //          '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-            //          '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-            //	'<td>' + actions + '</td>' +
-            //      '</tr>';
-            //  	$("table").append(row);
-            //$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            //      $('[data-toggle="tooltip"]').tooltip();
-            //  });
             // Add row on add button click
             $(document).on("click", ".add", function () {
                 var empty = false;
@@ -160,12 +143,14 @@
 
 
                 var id = $(this).parents("tr").children(0).children(0)[0].value;
-                var title = $(this).parents("tr").children(0).children(0)[1].value;
-                var desc = $(this).parents("tr").children(0).children(0)[2].value;
+                var fname = $(this).parents("tr").children(0).children(0)[1].value;
+                var lname = $(this).parents("tr").children(0).children(0)[2].value;
+                var email = $(this).parents("tr").children(0).children(0)[3].value;
+                var access = $(this).parents("tr").children(0).children(0)[4].value;
 
                 var settings = {
                     // "url": "https://localhost:44342/api/savedItem?id="+id,
-                    "url": "/api/SavedItem?id=" + id,
+                    "url": "/api/Manager?id=" + id,
                     "method": "PUT",
                     "timeout": 0,
                     "headers": {
@@ -173,13 +158,16 @@
                     },
                     "data": JSON.stringify({
 
-                        "title": title,
-                        "description": desc
+                        "fname": fname,
+                        "lname": lname,
+                        "email": email,
+                        "access": access
                     }),
                 };
 
                 $.ajax(settings).done(function (response) {
                     console.log(response);
+                    swal("Added Successfuly!", "Great Job", "success");
                 });
 
 
@@ -223,23 +211,29 @@
         });
         function sendData() {
             console.log("in rend");
-            ajaxCall('GET', '../api/SavedItem', '', getContent, errorCB)
+            ajaxCall('GET', '../api/Manager', '', getContent, errorCB)
         }
+
 
         function getContent(content) {
             console.log(content);
             var htmlString = '';
             for (let i = 0; i < content.length; i++) {
                 htmlString += `<tr>
-                                    <td style="pointer-events:none">${content[i].id}</td>
-                                    <td>${content[i].title}</td>
-                                    <td>${content[i].description}</td>
-                                    <td>
-                                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                    </td>
-                                </tr>`
+                                        <td style="pointer-events:none">${content[i].id}</td>
+                                        <td>${content[i].fname}</td>
+                                        <td>${content[i].lname}</td>
+                                        <td>${content[i].email}</td>
+                                        <td>${content[i].access}</td>
+
+
+
+                                        <td>
+                                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                        </td>
+                                    </tr>`
             }
 
 
@@ -255,7 +249,7 @@
         var row_to_delete;
         function deleteRow() {
             var id = row_to_delete.children(":first").text();
-            ajaxCall('DELETE', '../api/SavedItem/' + id, '', deleteSuccess, errorCB)
+            ajaxCall('DELETE', '../api/Manager/' + id, '', deleteSuccess, errorCB)
             row_to_delete.remove();
             $('.modal').hide();
         }
@@ -264,6 +258,7 @@
         function deleteSuccess(obj) {
             alert('delete success');
         }
+
     </script>
 </head>
 <body>
@@ -317,7 +312,7 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-8"><h2><b>Saved Items</b></h2></div>
+                        <div class="col-sm-8"><h2><b>Users and access certificates</b></h2></div>
                         <!--<div class="col-sm-4">
                             <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
                         </div>-->
@@ -331,6 +326,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Access</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
