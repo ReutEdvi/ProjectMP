@@ -7,7 +7,7 @@
    
 	Primary key (Id)
 )
-
+select * from Campaign_2021
 select * from SaveItem_2021
 select * from Customers_2021
 drop TABLE Customers_2021
@@ -19,5 +19,6 @@ CREATE TABLE [Customers_2021] (
     [email]    NVARCHAR (40)  NOT NULL,
     [phoneN]   NVARCHAR (30)  NOT NULL,
     [password] NVARCHAR (30)  NOT NULL,
+
     Primary key (Id)
 )

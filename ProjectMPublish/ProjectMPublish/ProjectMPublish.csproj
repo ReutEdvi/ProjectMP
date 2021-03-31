@@ -188,6 +188,7 @@
     <Content Include="Pages\ItemPage.html" />
     <Content Include="Pages\login.html" />
     <Content Include="Pages\registration.html" />
+    <Content Include="Pages\managerAcces.html" />
     <Content Include="Pages\SavedItems.html" />
     <Content Include="Pages\style.css" />
     <Content Include="Scripts\ajaxCalls.js" />
