@@ -77,6 +77,23 @@ INSERT INTO [CustomersM_2021]
 
            
 	   )
-       select * from CustomersM_2021
+       select * from Customers_2021
        SELECT * FROM Customers_2021 where email = 'edvireut@gmail.com' and password = 'Rere123456' and access <> 'NULL'
-       SELECT * FROM Customers_2021 where email = 'edvireut@gmail.com' and password = 'Rere123456' and access <> 'NULL' 
+       SELECT * FROM Customers_2021 where email = 'edvireut@gmail.com' and password = 'Rere123456'
+       SELECT * FROM Customers_2021 where email = 'yamp@gmail.com'
+       SELECT * FROM Customers_2021 where email = 'edvireut@gmail.com'
+       SELECT * FROM Customers_2021 where email = 'yamp@gmail.com' and access <> 'NULL' 
+
+    CREATE TABLE [Customers_2021] (
+    [id]       SMALLINT       IDENTITY (1, 1) NOT NULL,
+    [fname]    NVARCHAR (30)  NOT NULL,
+    [lname]    NVARCHAR (30)  NOT NULL,
+    [email]    NVARCHAR (40)  NOT NULL,
+    [phoneN]   NVARCHAR (30)  NOT NULL,
+    [password] NVARCHAR (30)  NOT NULL,
+    [access] NVARCHAR (30) DEFAULT 'no'  , 
+    
+
+    Primary key (id)
+)
+City varchar(255) DEFAULT 'Sandnes'

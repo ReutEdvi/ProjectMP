@@ -63,14 +63,11 @@
                 swal("You are already registered in the system!", "Go to login page");
                 
             }
-            else if (Data.Email != null && Data.Access == null)
-            {
-                swal("Wait for manager approval", "Please try again later");
-            }
             else
             {
-                swal("faild", "Please try again later");
+                swal("Wait for manager approval", "Please try again later");               
             }
+            /*AddCustomer();*/
 
         }
         function getcheckUserError(err) {
