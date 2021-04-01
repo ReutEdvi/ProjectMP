@@ -26,7 +26,7 @@
         }
 
         .table-wrapper {
-            width: 700px;
+            /*width: 700px;*/
             margin: 30px auto;
             background: #fff;
             padding: 20px;
@@ -235,7 +235,7 @@
             var htmlString = '';
             for (let i = 0; i < content.length; i++) {
                 htmlString += `<tr>
-                                    <td style="pointer-events:none">${content[i].id}</td>
+                                    <td style="pointer-events:none">${content[i].storyNum}</td>
                                     <td>${content[i].title}</td>
                                     <td>${content[i].description}</td>
                                     <td>
@@ -287,6 +287,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">אייטמים</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="document.location='Import_videos.html'">דיגיטל</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="document.location='Managerlogin.html'">מנהל</a>
