@@ -17,3 +17,6 @@
 img {
     width: 50px;
 }
+#navTool {
+    direction: rtl;
+}

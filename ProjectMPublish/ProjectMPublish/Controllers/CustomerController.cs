@@ -17,6 +17,12 @@ namespace ProjectMPublish.Controllers
             return c.Read(email, password);
 
         }
+        public Customer Get(string email)
+        {
+            Customer c = new Customer();
+            return c.Check(email);
+
+        }
         // POST api/<controller>
         public void Post([FromBody] Customer cr)
         {

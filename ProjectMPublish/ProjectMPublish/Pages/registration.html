@@ -10,19 +10,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <link href="style.css" rel="stylesheet" />
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <style type="text/css">
 
-
-     /*   img {
-            height: 100px;
-        }*/
-
+        body {
+            background-color: #dee2e6;
+        }
         .red-star {
             color: red;
         }
+        .form-group {
+            margin-bottom: 1rem;
+            padding: 5px;
+        }
+        .container {
+            max-width: 1140px;
+            background-color: beige;
+        }
+
     </style>
-    <!--<script src="../Scripts/ajaxCalls.js"></script>-->
     <script src="../Scripts/ajaxCallsWithKey.js"></script>
 
     <script>
@@ -33,11 +40,41 @@
         });
 
         function f1() {
-            /*swal("Your details have been recorded!", "Great Job", "success");*/
+            checkUserExist();
             AddCustomer();
 
             return false; // the return false will prevent the form from being submitted
             // hence the page will not reload
+        }
+        function checkUserExist() {
+            console.log("In check!");        
+            valEmail = $("#emailTB").val();
+            let api = "../api/Customer?email=" + valEmail;
+            ajaxCall("GET", api, "", getcheckUserSuccess, getcheckUserError);
+
+
+        }
+        function getcheckUserSuccess(data) {
+            Data = data;
+            console.log(Data);
+            
+            if (Data.Email != null && Data.Access != null)
+            {                
+                swal("You are already registered in the system!", "Go to login page");
+                
+            }
+            else if (Data.Email != null && Data.Access == null)
+            {
+                swal("Wait for manager approval", "Please try again later");
+            }
+            else
+            {
+                swal("faild", "Please try again later");
+            }
+
+        }
+        function getcheckUserError(err) {
+            console.log(err);
         }
         function AddCustomer() {
             //let data = new FormData();
@@ -49,8 +86,6 @@
                 PhoneN: $("#phoneTB").val(),
                 Password: $("#passwordTB").val()
                 
-
-
             }
 
             ajaxCall("POST", "../api/Customer", JSON.stringify(customer), success, error);
@@ -59,7 +94,7 @@
 
         // This function is called in case of a success
         function success(data) {
-            swal("Your details have been recorded!", "Great Job", "success");
+            swal("Your details have been recorded!","Your access will be approved after administrator approval");
             //user = $("#emailTB").val();
             saveLocalStorge();
             //setTimeout(function () {
@@ -84,9 +119,26 @@
 
 </head>
 <body>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <h1>כאן 11</h1>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navTool">
+        <a class="navbar-brand" href="#">רישום למערכת</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="document.location='login.html'">Login</a>
+                </li>                
+            </ul>
+
+        </div>
+    </nav>
     <div class="container">
         <form id="pForm">
-            <h2>Insert Your Details</h2>
+            <!--<h2>Insert Your Details</h2>-->
             <div class="form-group">
                 <label for="modelTB"><span class="red-star">★ </span>First name</label>
                 <input type="text" class="form-control" id="fnameTB" pattern="^[a-zA-z].{1,10}$"
@@ -104,10 +156,10 @@
                        oninput="this.setCustomValidity('')" placeholder="Enter Your Email" required />
             </div>
             <div class="form-group">
-                <label for="dealerPhone"><span class="red-star">★ </span>Phone Number (In Format ddd-dd-ddddddd )</label>
-                <!--<label for="dealerPhone">Phone Number (In Format ddd-dd-ddddddd )</label>-->
+                <label for="dealerPhone"><span class="red-star">★ </span>Phone Number (In Format ddd-ddddddd )</label>
+                <!--<label for="dealerPhone">Phone Number (In Format ddd-ddddddd )</label>-->
                 <input type="tel" class="form-control" placeholder="Enter Your phone Number" id="phoneTB"
-                       pattern="[0-9]{3}-[0-9]{2}-[0-9]{7}"
+                       pattern="[0-9]{3}-[0-9]{7}"
                        oninvalid="this.setCustomValidity('Phone Number pattern Is Not Valid')"
                        oninput="this.setCustomValidity('')" required />
             </div>
@@ -119,16 +171,13 @@
                        oninput="this.setCustomValidity('')" placeholder="Enter Your Password " required />
             </div>
 
-            <!--<div>
-                <label for="files">Img </label><br />
-                <input type="file" id="files" name="files" multiple="multiple" />
-            </div>-->
             <br />
 
-            <input type="submit" value="Submit BTN" />
-            <!--<input type="button" onclick="document.location='preferences.html'" value="fill preferences" id="restPage" />-->
-            <input type="button" onclick="document.location='login.html'" value="Back to login" id="restPage" />
+            <input type="submit" value="Send Details" />           
+            <!--<input type="button" onclick="document.location='login.html'" value="Back to login" id="restPage" />-->
+
         </form>
+        <br />
     </div>
 
     <div id="ph"> </div>

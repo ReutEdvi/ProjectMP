@@ -159,5 +159,49 @@ namespace ProjectMPublish.Models.DAL
             }
 
         }
+
+        public Customer CheckCustomer(string email)
+        {
+
+            SqlConnection con = null;
+            Customer c = new Customer();
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+
+                //String selectSTR = "SELECT * FROM Customers_2021 Where email=" + email + " and password=" + password;
+                //String selectSTR = "SELECT * FROM Customers_2021 Where email= "+"'"+ email +"'"+"+ and password ="+"'"+ password+"'";
+                String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email  + "'" + " and access <> 'NULL' ";
+
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+                while (dr.Read())
+                {   // Read till the end of the data into a row                   
+                    //Customer c = new Customer();
+                    c.Email = (string)dr["email"];
+                    c.Access = (string)dr["access"];
+                    //cusList.Add(c);
+                }
+
+                return c;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+
+            }
+
+        }
     }
 }

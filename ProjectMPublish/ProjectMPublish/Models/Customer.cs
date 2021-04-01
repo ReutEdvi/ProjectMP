@@ -42,15 +42,19 @@ namespace ProjectMPublish.Models
         public Customer Read(string email, string password)
         {
             DBServices dbs = new DBServices();
-            return dbs.ReadCustomer(email, password);
-            
-            
+            return dbs.ReadCustomer(email, password);              
         }
         public void InsertC()
         {
             DBServices dbs = new DBServices();
             dbs.InsertCustomer(this);
         }
+        public Customer Check(string email)
+        {
+            DBServ dbs = new DBServ();
+            return dbs.CheckCustomer(email);
+        }
+        
 
     }
 }
