@@ -41,7 +41,7 @@
 
         function f1() {
             checkUserExist();
-            AddCustomer();
+            /*AddCustomer();*/
 
             return false; // the return false will prevent the form from being submitted
             // hence the page will not reload
@@ -58,16 +58,18 @@
             Data = data;
             console.log(Data);
             
-            if (Data.Email != null && Data.Access != null)
-            {                
+            if (Data.Email != null && Data.Access == 'yes')
+            {
                 swal("You are already registered in the system!", "Go to login page");
-                
+            }
+            else if (Data.Email != null && Data.Access == 'no') {
+                swal("Wait for manager approval", "Please try again later");
             }
             else
             {
-                swal("Wait for manager approval", "Please try again later");               
+                AddCustomer();
             }
-            /*AddCustomer();*/
+            
 
         }
         function getcheckUserError(err) {

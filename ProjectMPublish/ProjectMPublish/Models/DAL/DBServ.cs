@@ -173,8 +173,8 @@ namespace ProjectMPublish.Models.DAL
 
                 //String selectSTR = "SELECT * FROM Customers_2021 Where email=" + email + " and password=" + password;
                 //String selectSTR = "SELECT * FROM Customers_2021 Where email= "+"'"+ email +"'"+"+ and password ="+"'"+ password+"'";
-                String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email + "'" + " and access <> 'NULL' ";
-                //String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email + "'";
+                //String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email + "'" + " and access <> 'NULL' ";
+                String selectSTR = "SELECT * FROM Customers_2021 where email = " + "'" + email + "'";
 
 
                 SqlCommand cmd = new SqlCommand(selectSTR, con);

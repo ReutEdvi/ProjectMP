@@ -96,4 +96,5 @@ INSERT INTO [CustomersM_2021]
 
     Primary key (id)
 )
-City varchar(255) DEFAULT 'Sandnes'
+select * from Customers_2021
+drop TABLE Customers_2021
