@@ -36,6 +36,9 @@
         body {
             direction: rtl;
         }
+        .container {
+            text-align: right;
+        }
 
 
     </style>
@@ -93,7 +96,7 @@
         </div>
     </nav>
 
-    <div class="container" style="margin-top:30px">
+    <div class="container" style="margin-top:20px">
         <div class="row">
             <div class="col-sm-4">
                 <h2>החדשות שלנו</h2>
@@ -104,6 +107,22 @@
 
                 <h3>התכנים שלנו</h3>
                 <p>בחר תוכן</p><br />
+
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+
                 <select id="cuisine" name="cuisine" class="custom-select"
                         style="width:150px;">
                     <option value="Cuisine type">סוג תוכן</option>
@@ -116,22 +135,6 @@
                 </select><br />
 
 
-
-                <!--<ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>-->
-                <hr class="d-sm-none">
             </div>
             <div class="col-sm-8">
                 <h2>דיגיטל</h2>
@@ -142,18 +145,26 @@
 
 
                     <br>
-                    <h2>Results</h2>
+
                     <div id="cuiss">
 
                     </div>
 
                 </div>
             </div>
-            
-        </div>
 
-    <!--<div class="jumbotron text-center" style="margin-bottom:0">
-        <p>Footer</p>-->
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-8">
+
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron text-center" style="margin-bottom:0">
+        <p>Footer</p>
     </div>
 </body>
 </html>

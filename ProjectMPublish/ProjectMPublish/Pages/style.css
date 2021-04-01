@@ -6,13 +6,13 @@
 }*/
 
 .content-form {
-    display:inline-flex;
+    display: inline-flex;
     flex-direction: column;
     justify-content: space-around;
     height: 600px;
     background-color: lightgray;
-    border: 1px solid black;
-    padding:15px;
+    border: 1px solid #adb5bd;
+    padding: 15px;
 }
 img {
     width: 50px;

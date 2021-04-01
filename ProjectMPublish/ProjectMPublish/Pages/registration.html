@@ -41,8 +41,6 @@
 
         function f1() {
             checkUserExist();
-            /*AddCustomer();*/
-
             return false; // the return false will prevent the form from being submitted
             // hence the page will not reload
         }
@@ -51,13 +49,10 @@
             valEmail = $("#emailTB").val();
             let api = "../api/Customer?email=" + valEmail;
             ajaxCall("GET", api, "", getcheckUserSuccess, getcheckUserError);
-
-
         }
         function getcheckUserSuccess(data) {
             Data = data;
-            console.log(Data);
-            
+            console.log(Data);           
             if (Data.Email != null && Data.Access == 'yes')
             {
                 swal("You are already registered in the system!", "Go to login page");
@@ -70,14 +65,11 @@
                 AddCustomer();
             }
             
-
         }
         function getcheckUserError(err) {
             console.log(err);
         }
-        function AddCustomer() {
-            //let data = new FormData();
-            
+        function AddCustomer() {           
             customer = { // Note that the name of the fields must be identical to the names of the properties of the object in the server
                 Fname: $("#fnameTB").val(),
                 Lname: $("#lnameTB").val(),
@@ -86,9 +78,7 @@
                 Password: $("#passwordTB").val()
                 
             }
-
             ajaxCall("POST", "../api/Customer", JSON.stringify(customer), success, error);
-
         }
 
         // This function is called in case of a success
