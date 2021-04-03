@@ -16,7 +16,10 @@
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         .fakeimg {
-            height: 200px;
+           /* height: 200px;*/
+        }
+        .card-link{
+            padding:8px;
         }
 
         .wrap {
@@ -54,7 +57,7 @@
         }
 
         .search_item {
-            display: flex;
+            /*display: flex;*/
             justify-content: space-between;
             padding: 24px;
         }
@@ -162,7 +165,7 @@
                 str += "<div id='" + i + "'class='card'><div class='card-header'>";
                 str += "<a class='card-link' data-toggle='collapse' href='#collapseOne'>"
                     + Data[i].ShowTitle + "</a >";
-                str += "<a href='#' id='" + i + "' class='btn btn-primary' onclick='sendText(this)'>" + "עריכה " + "</a>";
+                str += "<a href='#' id='" + i + "' class='btn btn-primary' onclick='sendText(this)'>" + " עריכה " + "</a>";
                 str += "<div id='collapseOne'  id='" + i + "' class='collapse show' data-parent='#accordion'>";
                 str += "<div class='card-body'><p>מספר תוכנית: " + Data[i].ShowId + "</p>";
                 str += "<p class='scriptName'>" + Data[i].StoryName + "</p>";
@@ -328,11 +331,11 @@
 
             let id = $("#vlist").val();
             let api = "../api/videos/getItem?id=" + id;
-            ajaxCallLocal("GET", api, "", getSuccessItem, getErrorItem)
+            ajaxCallLocal("GET", api, "", getSuccessItem, getErrorItem);
 
         }
         function getSuccessItem(data) {
-            $("#frame").html('').append($('<img />', { src: 'blah.gif' }));
+            $("#frame").html('').append($('', { src: 'blah.gif' }));
 
             console.log("YAHOOO");
             console.log(data[0].Ifrmae)
@@ -407,13 +410,38 @@
                 <div id="frame" class="search_item">
                 </div>
 
-                <div class="search_item">
+                <!--<div class="search_item">
                     <h5>עריכה</h5>
                     <input class="form-control" type="text" placeholder="StartTime" aria-label="readonly input example">
                     <input class="form-control" type="text" placeholder="EndTime" aria-label="readonly input example">
                     <button type="button" class="btn btn-primary">חתוך</button>
+                </div>-->
+                <div class="row">
+                    <div class="col">
+                        <div class="content-form">
+                            <div>
+                                <label for="title-input">שם תכנית</label>
+                                <input id="title-input" type="text" name="title-input" value="" /><br>
+                                <label for="id-input">מספר תכנית</label>
+                                <input id="id-input" type="text" name="id-input" value="" />
+                            </div>
+                            <div>
+                                <label for="desc-input">תאור</label>
+                                <textarea id="desc-input" name="desc-input" rows="10" cols="40"></textarea>
+                            </div>
+                            <!--<img src="https://img.icons8.com/fluent/50/000000/twitter.png" />-->
+                            <!--<img src="https://img.icons8.com/fluent/50/000000/facebook-new.png" />-->
+                            <!--<img src="https://img.icons8.com/officel/50/000000/youtube.png" />-->
+                            <fb:login-button scope="public_profile,email"
+                                             onlogin="checkLoginState();">
+                            </fb:login-button>
 
 
+                            <button id="saveItem">Save Item</button>
+                            <button onclick="sendPost('TBD')" id="testBtn">Post</button>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -423,7 +451,7 @@
 
             </div>
             <div class="col-sm-8" id="content-editor">
-                <div class="content-form">
+                <!--<div class="content-form">
                     <div>
                         <label for="title-input">שם תכנית</label>
                         <input id="title-input" type="text" name="title-input" value="" /><br>
@@ -433,11 +461,11 @@
                     <div>
                         <label for="desc-input">תאור</label>
                         <textarea id="desc-input" name="desc-input" rows="10" cols="40"></textarea>
-                    </div>
+                    </div>-->
                     <!--<img src="https://img.icons8.com/fluent/50/000000/twitter.png" />-->
                     <!--<img src="https://img.icons8.com/fluent/50/000000/facebook-new.png" />-->
                     <!--<img src="https://img.icons8.com/officel/50/000000/youtube.png" />-->
-                    <fb:login-button scope="public_profile,email"
+                    <!--<fb:login-button scope="public_profile,email"
                                      onlogin="checkLoginState();">
                     </fb:login-button>
 
@@ -445,7 +473,7 @@
                     <button id="saveItem">Save Item</button>
                     <button onclick="sendPost('TBD')" id="testBtn">Post</button>
 
-                </div>
+                </div>-->
             </div>
 
         </div>
