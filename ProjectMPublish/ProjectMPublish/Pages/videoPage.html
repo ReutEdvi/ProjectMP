@@ -34,7 +34,21 @@
     <script src="../Scripts/ajaxCalls.js"></script>
 
     <script>
-
+        checkUser();
+        function checkUser() {
+            if (localStorage["userObject"] != null) {
+                tastStr = JSON.parse(localStorage["userObject"]);
+                $("#userName").append(tastStr.email);
+            }
+            else {
+                tastStr = [];
+            }
+        }
+        $("#logOut").click(function () {
+            /*localStorage.clear();*/
+            document.location = "login.html";
+            localStorage.clear();
+        });
 
         ////////////
         var myHeaders = new Headers();
@@ -201,7 +215,10 @@
                     <a class="nav-link" href="#" onclick="document.location='Managerlogin.html'">מנהל</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="hello_user" href="#">hello<h5 id="userName"></h5></a>
+                    <a class="nav-link" id="userName" href="#" style="margin-right: 600px"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logOut" href="#">Log Out</a>
                 </li>
             </ul>
 

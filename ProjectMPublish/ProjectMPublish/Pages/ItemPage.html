@@ -135,6 +135,12 @@
 
         $(document).ready(function () {
             console.log("ready!");
+            checkUser();
+            $("#logOut").click(function () {
+                /*localStorage.clear();*/
+                document.location = "login.html";
+                localStorage.clear();
+            });
             $("#getShow").click(showRend);
             $("#getShow").click(showVideo);
             $("#saveItem").click(saveItemD);
@@ -143,6 +149,16 @@
             $("#vlist").change(getUrl);
 
         });
+        function checkUser() {
+            if (localStorage["userObject"] != null) {
+                tastStr = JSON.parse(localStorage["userObject"]);
+                $("#userName").append(tastStr.email);
+            }
+            else {
+                tastStr = [];
+            }
+        }
+
         function showRend() {
             console.log("in rend");
             let api = "../api/Item";
@@ -376,7 +392,10 @@
                 <a class="nav-link" href="#" onclick="document.location='Managerlogin.html'">מנהל</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="hello_user" href="#">hello<h5 id="userName"></h5></a>
+                <a class="nav-link" id="userName" href="#" style="margin-right: 600px"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="logOut" href="#">Log Out</a>
             </li>
         </ul>
 
