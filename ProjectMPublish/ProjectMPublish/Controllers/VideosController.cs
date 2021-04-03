@@ -8,18 +8,25 @@ using System.Web.Http;
 
 namespace ProjectMPublish.Controllers
 {
+
     public class VideosController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public List<Video> Get()
         {
-            return new string[] { "value1", "value2" };
+            Video video = new Video();
+            List<Video> VList = video.Read();
+            return VList;
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/videos/getItem")]
+        public List<Video> Get(string id)
         {
-            return "value";
+            Video video = new Video();
+            List<Video> IList = video.getItem(id);
+            return IList;
         }
 
         // POST api/<controller>

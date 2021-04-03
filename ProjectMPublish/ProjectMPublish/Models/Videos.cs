@@ -1,5 +1,4 @@
 ﻿using ProjectMPublish.Models.DAL;
-using ProjectMPublish.Models.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +36,24 @@ namespace ProjectMPublish.Models
         {
             DBSERvvv dbs = new DBSERvvv();
             dbs.InsertVideo(this);
+        }
+
+
+        public List<Video> Read()
+        {
+
+            DBSERvvv dbs = new DBSERvvv();
+            List<Video> vList = dbs.Getvideotitle();
+            return vList;
+
+        }
+        public List<Video> getItem(string id)
+        {
+
+            DBSERvvv dbs = new DBSERvvv();
+            List<Video> iList = dbs.GetItemtitle(id);
+            return iList;
+
         }
     }
 }

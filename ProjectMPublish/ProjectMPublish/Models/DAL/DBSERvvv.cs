@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -87,6 +88,89 @@ namespace ProjectMPublish.Models.DAL
                     // close the db connection
                     con.Close();
                 }
+            }
+
+        }
+
+        public List<Video> Getvideotitle()
+        {
+            SqlConnection con = null;
+            List<Video> VideoList = new System.Collections.Generic.List<Video>();
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM Videos";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {   // Read till the end of the data into a row
+                    Video v = new Video();
+
+                    v.Title = (string)dr["title"];
+                    v.Id = (string)dr["id"];
+                    VideoList.Add(v);
+                }
+
+                return VideoList;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+
+            }
+
+        }
+        public List<Video> GetItemtitle(string id)
+        {
+            SqlConnection con = null;
+            List<Video> itemList = new List<Video>();
+
+            try
+            {
+                con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+                String selectSTR = "SELECT * FROM Videos where id = " + "'" + id + "'";
+                SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+                // get a reader
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+                while (dr.Read())
+                {   // Read till the end of the data into a row
+                    Video v = new Video();
+
+                    v.Ifrmae = (string)dr["ifrmae"];
+
+                    itemList.Add(v);
+                }
+
+                return itemList;
+            }
+            catch (Exception ex)
+            {
+                // write to log
+                throw (ex);
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+
             }
 
         }
