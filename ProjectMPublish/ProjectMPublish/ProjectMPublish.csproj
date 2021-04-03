@@ -191,9 +191,7 @@
     <Content Include="Images\TV.gif" />
     <Content Include="Images\youtube-promotion.jpg" />
     <Content Include="Pages\businesses.html" />
-    <Content Include="Pages\Main.html" />
     <Content Include="Pages\videoPage.html" />
-    <Content Include="Pages\Import_videos.html" />
     <Content Include="Pages\ItemPage.html" />
     <Content Include="Pages\Managerlogin.html" />
     <Content Include="Pages\login.html" />

@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <link href="style.css" rel="stylesheet" />
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -127,15 +127,18 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        #navTool{
-            direction:rtl;
+
+        #navTool {
+            direction: rtl;
         }
+
         h1 {
             margin-bottom: .5rem;
             font-weight: 500;
             line-height: 1.2;
             font-size: 2.5rem;
         }
+
         body {
             /*color: #404E67;*/
             color: #212529;
@@ -155,27 +158,27 @@
             $("#regPage").click(function () {
                 localStorage.clear();
             });
-            
+
             $('.message a').click(function () {
                 $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
             });
 
         });
 
-        function checkValue() {          
+        function checkValue() {
             console.log("In check!");
             valemail = $("#emailTB").val();
             valpassword = $("#passwordTB").val();
             let api = "../api/Manager?email=" + valemail + "&password=" + valpassword;
             ajaxCall("GET", api, "", getCheckSuccess, getCheckError);
         }
-        function getCheckSuccess(data) {   
+        function getCheckSuccess(data) {
             Data = data;
             console.log(Data.Email);
             if (Data.Email != null && Data.Password != null) {
-                document.location ="managerAcces.html";
+                document.location = "managerAcces.html";
                 /*swal("Added Successfuly!", "Great Job", "success");*/
-                 userObject = { 'email': Data.Email, 'password': Data.Password };
+                userObject = { 'email': Data.Email, 'password': Data.Password };
                 localStorage.setItem('userObject', JSON.stringify(userObject));
                 console.log(userObject);
             }
@@ -183,7 +186,7 @@
                 swal("The Details are not correct!", "Try again", "fail");
             }
 
-            
+
         }
         function getCheckError(err) {
             console.log(err);
@@ -210,7 +213,7 @@
                     <a class="nav-link" href="#" onclick="document.location='SavedItems.html'">אייטמים</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="document.location='Import_videos.html'">דיגיטל</a>
+                    <a class="nav-link" href="#" onclick="document.location='videoPage.html'">דיגיטל</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">מנהל</a>
